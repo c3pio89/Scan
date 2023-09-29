@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import store from "../../store/store.js";
-import styles from "./Header.module.css";
+import styles from "./Header.css";
 import LogoColour from "../../images/Logo-colour.svg";
 import Logo from "../../images/Logo.svg";
 import Photo from "../../images/defAva.svg";
-// import Loader from "../../components/Loader/Loader.jsx";
 import { accountInfo } from "../../API/auth.js";
 import { authControl } from "../../func/authControl.js";
 import { authReset } from "../../func/authReset.js";

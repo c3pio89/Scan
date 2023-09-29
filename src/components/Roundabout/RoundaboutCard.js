@@ -1,4 +1,4 @@
-import styles from "./RoundaboutCard.module.css";
+import styles from "./RoundaboutCard.css";
 import Watch from "../../../images/Watch.svg";
 import Lens from "../../../images/Lens.svg";
 import Shield from "../../../images/Shield.svg";

@@ -1,4 +1,4 @@
-import styles from './ResultSlider.module.css'
+import styles from './Slider.css'
 import right from '../../../images/Icon-right.svg'
 import { useRef } from 'react'
 import { mapArr } from '../../../func/map'

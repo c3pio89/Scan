@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./MainPage.module.css";
+import styles from "./Main.css";
 import MainImage from "../../images/Main-image.svg";
 import AdvertImagePrimary from "../../images/Advert-image-primary.svg";
 import AdvertImageSecondary from "../../images/Advert-image-secondary.svg";

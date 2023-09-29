@@ -1,18 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./loginError.module.css";  // Убедитесь, что у вас есть соответствующий CSS-файл
+import styles from "./loginError.css";
 
-function LoginError() {
+function AuthErrorPage() {
   return (
-    <main className={styles.errorContainer}>
-      <h1 className={styles.errorMessage}>
-        Указанный логин или пароль неверен. Вернитесь на страницу авторизации и повторите ввод.
-      </h1>
-      <Link to={"/login"} className={styles.returnButton}>
-        Вернуться
-      </Link>
-    </main>
+    <>
+      <main className={styles.errorContainer}>
+        <h1 className={styles.errorMessage}>
+          Указанный логин или пароль неверен. Вернитесь на страницу авторизации
+          и повторите ввод.
+        </h1>
+        <Link to={"/auth"} className={styles.returnButton}>
+          Вернуться
+        </Link>
+      </main>
+    </>
   );
 }
 
-export default LoginError;
+export { AuthErrorPage };

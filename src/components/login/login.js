@@ -1,88 +1,132 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Characters from "../../images/Characters.svg";
+import lock from "../../images/lock.svg";
+import Google from "../../images/Google.svg";
+import facebook from "../../images/facebook.svg";
+import yandex from "../../images/yandex.svg";
+import { Button, Container } from "react-bootstrap";
+import styles from "./login.css";
+import { logIn } from "../../API/auth";
+import { authCheck } from "../../func/authControl";
 
-const Login = () => {
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-  const [accessToken, setAccessToken] = useState(null);
-  const [expireDate, setExpireDate] = useState(null);
+const Auth = ({ isAuth, setIsAuth }) => {
+  const [userName, setUsersName] = useState(localStorage.getItem("User"));
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  // Функция для обработки изменений в полях формы
-  const handleInputChange = (e, setter) => {
-    setter(e.target.value);
-  };
-
-  // Проверка на заполненность полей
-  useEffect(() => {
-    if (userName && password) {
-      setIsButtonDisabled(false);
-    } else {
-      setIsButtonDisabled(true);
-    }
-  }, [userName, password]);
-
-  // Функция для отправки данных на сервер
-  const handleLogin = async () => {
-    // Здесь будет код для отправки POST-запроса на account/login
-    // Для демонстрации используется заглушка
-    const response = await fetch('account/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ userName, password }),
+  function handleAuth() {
+    localStorage.setItem("User", userName);
+    logIn(userName, password).then(() => {
+      return authCheck(
+        localStorage.getItem("TOKEN"),
+        localStorage.getItem("EXPIRE"),
+        setIsAuth,
+        navigate
+      );
     });
-
-    const data = await response.json();
-
-    if (data.accessToken && data.expire) {
-      setAccessToken(data.accessToken);
-      setExpireDate(data.expire);
-      localStorage.setItem('accessToken', data.accessToken);
-      localStorage.setItem('expireDate', data.expire);
-    } else {
-      // Обработка ошибки авторизации
-      console.log('Ошибка авторизации');
-    }
-  };
+    setUsersName("");
+    setPassword("");
+  }
 
   return (
-    <div>
-      <h1>Авторизация</h1>
-      <form>
-        <div>
-          <label>
-            Логин:
-            <input
-              type="text"
-              value={userName}
-              onChange={(e) => handleInputChange(e, setUserName)}
+    <main>
+      <Container>
+        <div className={styles.displayForm}>
+          <div className={styles.Authorization}>
+            {isAuth === 2 ? (
+              <h1>wrong data</h1>
+            ) : (
+              <h1>
+                ДЛЯ ОФОРМЛЕНИЯ ПОДПИСКИ
+                <br />
+                НА ТАРИФ, НЕОБХОДИМО
+                <br />
+                АВТОРИЗОВАТЬСЯ.
+              </h1>
+            )}
+
+            <img
+              className={styles.Characters}
+              src={Characters}
+              alt="Characters"
             />
-          </label>
+          </div>
+          <div className={styles.form}>
+            <div className={styles.loginContainer}>
+              <div className={styles.row}>
+                <div className={styles.loginForm}>
+                  <form>
+                    <img className={styles.lock} src={lock} alt="lock" />
+                    <div className={styles.loginsignup}>
+                      <Button className={styles.login}>Войти</Button>
+                      <Button className={styles.signup}>
+                        Зарегистрироваться
+                      </Button>
+                    </div>
+                    <div className={styles.formGroup}>
+                      <label>
+                        Логин или номер телефона:
+                        <input
+                          type="text"
+                          className={styles.FormControl}
+                          placeholder={userName}
+                          value={userName}
+                          onChange={(e) => {
+                            setUsersName(e.target.value);
+                          }}
+                        />
+                      </label>
+                    </div>
+                    <div className={styles.formGroup}>
+                      <label>
+                        Пароль:
+                        <input
+                          type="password"
+                          className={styles.FormControl}
+                          placeholder=""
+                          value={password}
+                          onChange={(e) => {
+                            setPassword(e.target.value);
+                          }}
+                        />
+                      </label>
+                    </div>
+                    <Button onClick={handleAuth} className={styles.btnSubmit}>
+                      Войти
+                    </Button>
+                    <div className={styles.formGroup}>
+                      <a href="" className={styles.recoverPwd}>
+                        Восстановить пароль
+                      </a>
+                      <label>Войти через:</label>
+                      <div className={styles.imgsvg}>
+                        <img
+                          className={styles.Google}
+                          src={Google}
+                          alt="Geogle"
+                        />
+                        <img
+                          className={styles.facebook}
+                          src={facebook}
+                          alt="facebook"
+                        />
+                        <img
+                          className={styles.yandex}
+                          src={yandex}
+                          alt="yandex"
+                        />
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <label>
-            Пароль:
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => handleInputChange(e, setPassword)}
-            />
-          </label>
-        </div>
-        <button type="button" disabled={isButtonDisabled} onClick={handleLogin}>
-          Войти
-        </button>
-      </form>
-      <div>
-        <a href="#">Восстановить пароль</a>
-        <p>Войти через:</p>
-        <button>Google</button>
-        <button>Facebook</button>
-        <button>Яндекс</button>
-      </div>
-    </div>
+      </Container>
+    </main>
   );
 };
 
-export default Login;
+export { Auth };

@@ -1,4 +1,4 @@
-import styles from './ResultPage.module.css'
+import styles from './Result.css'
 import ResultPageImg from '../../images/ResultPageImg.svg'
 import {mapArr} from '../../func/map'
 import {useContext, useEffect, useState} from 'react'
