@@ -1,24 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import "./styles/App.css";
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
+import { useState } from "react";
+import { ResultProvider } from "./context/resultProvider";
+import Header from "./components/Page/Header";
+import {MainPage} from "./components/Page/Main";
+import {Auth} from "./components/login/login";
+import {SearchPage} from "./components/Page/Search";
+import {ResultPage} from "./components/Page/Result";
+import {AuthErrorPage} from "./components/loginError/loginError";
+import Footer from "./components/Page/Footer";
 
 function App() {
+  const [isAuth, setIsAuth] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+
+        <Header isAuth={isAuth} setIsAuth={setIsAuth} />
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route
+              path="/auth"
+              element={!isAuth ? <Auth isAuth={isAuth} setIsAuth={setIsAuth} /> : <Navigate to="/" />}
+          />
+
+          <Route element={isAuth ? <Outlet /> : <Navigate to="/auth" />}>
+            <Route
+                path="/search"
+                element={
+                  <ResultProvider>
+                    <SearchPage />
+                  </ResultProvider>
+                }
+            />
+            <Route
+                path="/result"
+                element={
+                  <ResultProvider>
+                    <ResultPage />
+                  </ResultProvider>
+                }
+            />
+          </Route>
+          <Route path="/error" element={<AuthErrorPage />} />
+        </Routes>
+        <Footer />
+
+      </div>
   );
 }
 

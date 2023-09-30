@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import store from "../../store/store.js";
-import styles from "./Header.css";
+import styles from "./Header.module.css";
 import LogoColour from "../../images/Logo-colour.svg";
 import Logo from "../../images/Logo.svg";
 import Photo from "../../images/defAva.svg";

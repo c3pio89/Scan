@@ -1,7 +1,8 @@
-import styles from './Slider.css'
-import right from '../../../images/Icon-right.svg'
+import styles from './Slider.module.css'
+import right from '../../images/Icon-right.svg'
+import left from '../../images/Icon-left.svg'
 import { useRef } from 'react'
-import { mapArr } from '../../../func/map'
+import { mapArr } from '../../func/map'
 import DotLoader from "react-spinners/DotLoader";
 
 
@@ -38,7 +39,7 @@ function ResultSlider({ data, isLoading }) {
 
   return (
     <div className={styles.resultSlider}>
-      <button onClick={slideLeft} className={styles.controller + " " + styles.controllerLeft} type='button'><img src={right}  alt='>'/></button>
+      <button onClick={slideLeft} className={styles.controller + " " + styles.controllerLeft} type='button'><img src={left}  alt='>'/></button>
       <div className={styles.wrapper}>
         <div className={styles.main}>
           <div>Период</div>

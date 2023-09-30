@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./Tarif.css";
-import Tick from "../../../images/Tick-image.svg";
+import styles from "./Tarif.module.css";
+import Tick from "../../images/Tick-image.svg";
 
 function TariffCard(props) {
   return (

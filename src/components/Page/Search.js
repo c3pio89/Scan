@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import styles from "./Search.css";
+import styles from "./Search.module.css";
 import DocumentImage from "../../images/SearchPageImg3.svg";
 import FolderImage from "../../images/SearchPageImg2.svg";
 import GroupImage from "../../images/SearchPageImg1.svg";

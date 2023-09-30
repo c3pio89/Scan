@@ -6,7 +6,7 @@ import Google from "../../images/Google.svg";
 import facebook from "../../images/facebook.svg";
 import yandex from "../../images/yandex.svg";
 import { Button, Container } from "react-bootstrap";
-import styles from "./login.css";
+import styles from "./login.module.css";
 import { logIn } from "../../API/auth";
 import { authCheck } from "../../func/authControl";
 
@@ -96,6 +96,7 @@ const Auth = ({ isAuth, setIsAuth }) => {
                       Войти
                     </Button>
                     <div className={styles.formGroup}>
+                      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                       <a href="" className={styles.recoverPwd}>
                         Восстановить пароль
                       </a>

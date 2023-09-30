@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import styles from "./Roundabout.css";
-import LeftArrow from "../../../images/LeftArrow.svg";
-import RightArrow from "../../../images/RightArrow.svg";
+import styles from "./Roundabout.module.css";
+import LeftArrow from "../../images/Icon-left.svg";
+import RightArrow from "../../images/Icon-right.svg";
 import {CARD, RoundaboutCard} from "./RoundaboutCard";
 
 function Roundabout() {

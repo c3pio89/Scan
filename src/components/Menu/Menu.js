@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "./Menu.css";
+import styles from "./Menu.module.css";
 import NavBar from "./NavBar";
 import store from "../../store/store";
 import {authReset} from "../../func/authReset";

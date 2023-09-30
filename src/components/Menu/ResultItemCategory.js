@@ -1,4 +1,4 @@
-import styles from './ResultItemCategories.module.css'
+import styles from './ResultItemCategory.module.css'
 
 export function ResultItemCategories({ isAnnouncement, isDigest, isTechNews }) {
   return (

@@ -1,6 +1,6 @@
 import styles from './ResultItem.module.css'
-import { parseDate, parseXml } from '../../../func/map'
 import {ResultItemCategories} from "./ResultItemCategory";
+import {parseDate, parseXml} from "../../func/map";
 
 
 function ResultItem({ data }) {
